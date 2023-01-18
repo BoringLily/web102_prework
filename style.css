@@ -19,8 +19,25 @@ body {
     margin-top: -10px;
 }
 
+.top-games-name{
+    padding: 1%;
+    text-align: center;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-top: -10px;
+}
+
 .stats-container {
     display: flex;
+    align-items: center;
+    border-radius:  10px;
+}
+.stats-container:hover{
+    cursor: pointer;
+    box-shadow: 0 0 30px lightblue;
 }
 
 .stats-card {
@@ -45,7 +62,7 @@ body {
 .game-img {
     width: 100%;
     border-radius: 5px;
-    box-shadow: 0 0 10px #FFFFFF;
+    box-shadow: 0 0 10px #939393;
 }
 
 .game-card {
@@ -56,7 +73,15 @@ body {
     text-align: center;
     border-radius: 7px;
 }
-
+.game-name{
+    padding-top: 10px;
+    font-size: 24px;
+}
+.game-data{
+    font-size: larger;
+    text-align: left;
+color: #2f2f2f;
+}
 .game-card:hover {
     cursor: pointer;
     box-shadow: 0 0 30px lightblue;
