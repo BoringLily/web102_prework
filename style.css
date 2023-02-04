@@ -1,100 +1,372 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900;1000&display=swap');
 
 body {
-    font-family: 'Cabin';
-    background-color: #758190;
+    background-color: #FAFCFD;
+    margin: 0px;
+    padding: 0px;
+    display: grid;
+    grid-template-columns: [col-left] minmax(0, 1fr) [col-content-left] minmax(0, 2fr) [col-content-right] minmax(0, 2fr)[col-right] minmax(0, 1fr) [end];
+    grid-template-rows: [header-top] 2.5rem [header-bottom] 50px [content-row] auto [footer] 100px[end];
 }
 
 #tentacles {
-    width: 50px;
+    width: 2rem;
+    grid-column: col1;
+    justify-items: right;
 }
 
-.header {
-    display: flex;
+#header-bar {
     background-color: lightblue;
-    padding: 1%;
-    align-items: center;
-    margin-left: -10px;
-    margin-right: -10px;
-    margin-top: -10px;
+    height: 2.5rem;
+    width: 100%;
+    margin: 0%;
+    padding: 0%;
+    grid-row: header-top;
+    grid-column: col-left/span all;
 }
 
-.top-games-name{
-    padding: 1%;
-    text-align: center;
-    font-size: 24px;
+
+#logo {
+    display: flex;
+    padding: 0%;
+    margin: 0%;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    flex-direction: row;
+    z-index: 1;
+    grid-column: col-left / col-content-right;
+    grid-row: header-top / content-row;
+}
+
+.logo-width {
+    width: 720px !important;
+}
+
+#logo-tab {
+    margin: -4px 0% 0%;
+    padding: 0%;
+    display: block;
+    justify-self: center;
+    grid-column: col-left / col-content-right;
+    grid-row: header-bottom / content-row;
+}
+
+#logo-text {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    grid-column: col1;
+}
+
+#logo-text-top {
+    font-family: 'Nunito';
     font-style: normal;
-    font-weight: 600;
-    margin-left: -10px;
-    margin-right: -10px;
-    margin-top: -10px;
+    font-weight: 500;
+    font-size: 1.75rem;
+    line-height: 86%;
+
+    color: #014860;
+}
+
+#logo-text-bottom {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.3rem;
+    line-height: 86%;
+
+    color: #014860;
+}
+
+#content {
+
+    margin: 0%;
+    grid-column: col-content-left / col-right;
+    grid-row: content-row;
+
+    /* flex-direction: column;
+    justify-content: stretch;
+    align-content: space-between; */
+}
+
+#h2-welcome {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 2.5rem;
+    line-height: 100%;
+    letter-spacing: -0.01em;
+    color: #014860;
+
+    padding: 0%;
+    margin: 4.5rem 1rem 0rem;
+
+    justify-self: left;
+}
+
+#description-container {
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 116%;
+    color: #000000;
+
+    margin: 1rem 1.5rem 0rem;
+
+    justify-self: left;
+
 }
 
 .stats-container {
     display: flex;
     align-items: center;
-    border-radius:  10px;
-}
-.stats-container:hover{
-    cursor: pointer;
-    box-shadow: 0 0 30px lightblue;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1rem 0rem;
+    padding: 0%;
 }
 
 .stats-card {
     background-color: #a8b0bc;
-    border-radius: 7px;
-    padding: 1%;
-    margin: 1%;
-    width: 100%;
-    text-align: center;
+    border-radius: 30px;
+
+    padding: 2rem 0rem 1rem;
+    flex: 1 0 25%;
+    margin: 0% 1.5rem;
+
+    max-width: 34%;
+    height: 6rem;
+
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-around;
+    align-items: center;
 }
 
-#num-contributions, #total-raised, #num-games {
-    font-size: 50px;
+.stats-card-large {
+    padding: 3.5rem 1.5rem 2rem;
+    max-width: 50%;
+    height: 10rem;
+}
+
+.stat-card-title {
+    color: #fff;
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 100%;
+    margin: 0%;
+    align-self: center;
+    text-align: center;
+
+    margin: 1rem 0rem 0rem;
+}
+
+.stat-card-text {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 1.8rem;
+    margin: auto 0%;
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+
+    color: #FFFFFF;
+
+}
+
+#num-contributions {
+    background: #62B1CC;
+}
+
+#total-raised {
+    background: #987ABF;
+}
+
+#num-games {
+    background: #E978AF;
+
+}
+
+#first-game {
+    background: #8FAE84;
+}
+
+#second-game {
+    background: #E2A266;
+}
+
+#our-games {
+    font-family: 'Impact';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 7rem;
+    line-height: 100%;
+    letter-spacing: 0.1em;
+    color: #FFC94D;
+    margin: 0%;
+    margin-top: 4rem;
+
+    align-self: center;
+    text-align: center;
+
+}
+
+#button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    margin: 2rem;
+}
+
+.filter-button {
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.1rem;
+    line-height: 100%;
+    width: fit-content;
+    border: none;
+
+    margin: 1%;
+    padding: 2%;
+
+    text-align: center;
+
+    color: #505050;
+    background: #E9E9E9;
+    border-radius: 63px;
+    box-shadow: inset -4px -3px 4px rgba(0, 0, 0, 0.1), inset 4px 3px 4px rgba(255, 255, 255, 0.54);
+}
+
+.filter-button:hover {
+    color: #000;
+    cursor: pointer;
+}
+
+.filter-button-active {
+    box-shadow: inset 4px 3px 4px rgba(0, 0, 0, 0.1), inset -4px -3px 4px rgba(255, 255, 255, 0.44);
+    background: #FFC94D;
+    color: #000000;
 }
 
 #games-container {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.game-card {
+    padding: 1rem 1.5rem 3.5rem;
+    margin: 1rem;
+
+    max-width: 33%;
+    max-height: 540px;
+    width: fit-content;
+    text-align: center;
+    background: #E9E9E9;
+    border-radius: 20px;
+
+    flex: 0 0 25%;
+
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     justify-content: space-around;
 }
 
 .game-img {
     width: 100%;
-    border-radius: 5px;
-    box-shadow: 0 0 10px #939393;
+    border-radius: 15px;
 }
 
-.game-card {
-    background-color: #FFFFFF;
-    padding: 1%;
-    margin: 1%;
-    width: 300px;
+.game-name {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 100%;
+
+    margin: 1rem 0px;
     text-align: center;
-    border-radius: 7px;
+
+    color: #000000;
+
 }
-.game-name{
-    padding-top: 10px;
-    font-size: 24px;
+
+.game-discription {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 100%;
+
+    margin: 2% 0px;
+    text-align: center;
+    color: #000000;
 }
-.game-data{
-    font-size: larger;
-    text-align: left;
-color: #2f2f2f;
-}
+
 .game-card:hover {
-    cursor: pointer;
-    box-shadow: 0 0 30px lightblue;
+    box-shadow: 4px 6px 8px #FFF6E0;
 }
 
-#button-container {
-    text-align: center;
+
+/* Media Queries  */
+
+@media screen and (max-width:1200px) {
+   
+    html {
+        font-size: 16px !important;
+    }
+    
+    body{
+        grid-template-columns: [col-left] 5% [col-content-left] 45% [col-content-right] 45%[col-right] 5% [end];
+        grid-template-rows: [header-top] 2.5rem [header-bottom] 50px [content-row] auto [footer] 100px[end];
+    }
+
+    .logo-width {
+        width: 600px !important;
+    }
+
+    .stats-container {
+        display: inline;
+        margin: 0%;
+        justify-content: center;
+        align-content: center;
+        margin: 0rem 0rem 2rem;
+    }
+
+    .stats-card{
+        flex: 1 0 50%;
+        max-width: 90%;
+        margin: 1rem;
+        padding: 1rem 1.5rem 1rem;
+    }
+   .game-card{
+    flex: 1 1 50%;
+    max-width: 70%;
+    }
+    
 }
 
-button {
-    font-family: 'Cabin';
-    border: none;
-    padding: 1%;
-    margin: 1%;
-    border-radius: 7px;
+@media screen and (max-width:3000px) {
+    html {
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width:3000px) {
+    html {
+        font-size: 28px;
+    }
 }

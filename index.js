@@ -38,12 +38,9 @@ function addGamesToPage(games) {
         newCard.classList.add("game-card");
 
         const card = `
-        <img class="game-img" src="${element.img}"> </img>
-        <div class="game-data" style="color: ${percent>100?"#518a03":"red"};"> Goal: $${element.pledged}/${element.goal} (${percent}%)</div>
-        <div class="game-data"> Backers: ${element.backers}</div> 
-        <br>
+        <img class="game-img" src="${element.img}">
         <div class="game-name"> ${element.name} </div>
-        <div> ${element.description} </div>
+        <div class="game-discription"> ${element.description} </div>
         `;
             newCard.innerHTML = card;
             gamesContainer.append(newCard);
@@ -86,8 +83,11 @@ const totalBackers = GAMES_JSON.reduce( (acc, element) => {
   }, 0);
 
 // set the inner HTML using a template literal and toLocaleString to get a number with commas
+let contributionsCardText = document.createElement("div");
+contributionsCardText.classList.add("stat-card-text");
+contributionsCardText.innerHTML=`${totalBackers.toLocaleString()}`;
 
-contributionsCard.innerHTML = `${totalBackers.toLocaleString()}`;
+contributionsCard.append(contributionsCardText);
 
 // grab the amount raised card, then use reduce() to find the total amount raised
 const raisedCard = document.getElementById("total-raised");
@@ -97,12 +97,21 @@ const totalRaised = GAMES_JSON.reduce( (acc, element) => {
   }, 0);
 // set inner HTML using template literal
 
-raisedCard.innerHTML = `$${totalRaised.toLocaleString()}`;
+let raisedCardText = document.createElement("div");
+raisedCardText.classList.add("stat-card-text");
+raisedCardText.innerHTML = `$${totalRaised.toLocaleString()}`;
+
+raisedCard.append(raisedCardText);
 
 // grab number of games card and set its inner HTML
 const gamesCard = document.getElementById("num-games");
 
-gamesCard.innerHTML=`${GAMES_JSON.length}`;
+let gamesCardText = document.createElement("div");
+gamesCardText.classList.add("stat-card-text");
+
+gamesCardText.innerHTML=`${GAMES_JSON.length}`;
+
+gamesCard.append(gamesCardText);
 /*************************************************************************************
  * Challenge 5: Add functions to filter the funded and unfunded games
  * total number of contributions, amount donated, and number of games on the site.
@@ -112,9 +121,12 @@ gamesCard.innerHTML=`${GAMES_JSON.length}`;
 // show only games that do not yet have enough funding
 function filterUnfundedOnly() {
     deleteChildElements(gamesContainer);
+    
+    // add active style to button
+    resetButtonClass();
+    unfundedBtn.classList.add("filter-button-active");
 
     // use filter() to get a list of games that have not yet met their goal
-
     let unfundedGames = GAMES_JSON.filter ( (GAMES_JSON) => {
         return GAMES_JSON.pledged < GAMES_JSON.goal;
       });
@@ -126,6 +138,10 @@ function filterUnfundedOnly() {
 // show only games that are fully funded
 function filterFundedOnly() {
     deleteChildElements(gamesContainer);
+
+    // add active style to button
+    resetButtonClass();
+    fundedBtn.classList.add("filter-button-active");
 
     // use filter() to get a list of games that have met or exceeded their goal
     let fundedGames = GAMES_JSON.filter ( (GAMES_JSON) => {
@@ -139,6 +155,10 @@ function filterFundedOnly() {
 // show all games
 function showAllGames() {
     deleteChildElements(gamesContainer);
+
+    // add active style to button
+    resetButtonClass();
+    allBtn.classList.add("filter-button-active");
 
     // add all games from the JSON data to the DOM
     addGamesToPage(GAMES_JSON);
@@ -169,7 +189,7 @@ let unfundedGames = GAMES_JSON.filter ( (GAMES_JSON) => {
 let numberOfUnfundedGames = unfundedGames.length;
 // create a string that explains the number of unfunded games using the ternary operator
 let unfundedGamesStr = `Currently ${numberOfUnfundedGames} ${numberOfUnfundedGames==1? "game remains": "games remain"} unfunded. We need your help to get ${numberOfUnfundedGames==1? "this amazing game": "these amazing games"} out into the world.`;
-let descriptionString = `We have raised $${totalRaised.toLocaleString()} for ${GAMES_JSON.length} ${GAMES_JSON.length==1?"game":"games"}. ${numberOfUnfundedGames == 0?"":unfundedGamesStr}`;
+let descriptionString = `In operation for 12 years, our mission has been to help fund independent games, bringing amazing projects to life. We have raised $${totalRaised.toLocaleString()} for ${GAMES_JSON.length} ${GAMES_JSON.length==1?"game":"games"}. ${numberOfUnfundedGames == 0?"":unfundedGamesStr}`;
 
 // create a new DOM element containing the template string and append it to the description container
 let newDescription = document.createElement("p");
@@ -191,17 +211,30 @@ const sortedGames =  GAMES_JSON.sort( (item1, item2) => {
 });
 
 // use destructuring and the spread operator to grab the first and second games
-let [firstTopGame, secondTopGame, ...others] = sortedGames;
+let [firstGame, secondGame, ...others] = sortedGames;
 
 // create a new element to hold the name of the top pledge game, then append it to the correct element
 
-let firstTopGameName = document.createElement("div");
-firstTopGameName.classList.add("top-games-name");
-firstTopGameName.innerHTML = `${firstTopGame.name}`;
-firstGameContainer.append(firstTopGameName);
+let firstGameName = document.createElement("div");
+firstGameName.classList.add("stat-card-text");
+firstGameName.innerHTML = `${firstGame.name}`;
+
+firstGameContainer.append(firstGameName);
 
 // do the same for the runner up item
-let secondTopGameName = document.createElement("div");
-secondTopGameName.classList.add("top-games-name");
-secondTopGameName.innerHTML = `${secondTopGame.name}`;
-secondGameContainer.append(secondTopGameName);
+let secondGameName = document.createElement("div");
+secondGameName.classList.add("stat-card-text");
+secondGameName.innerHTML = `${secondGame.name}`;
+
+secondGameContainer.append(secondGameName);
+
+
+function resetButtonClass()
+{
+    const unfundedBtn = document.getElementById("unfunded-btn");
+    const fundedBtn = document.getElementById("funded-btn");
+    const allBtn = document.getElementById("all-btn");
+    unfundedBtn.classList.remove("filter-button-active");
+    fundedBtn.classList.remove("filter-button-active");
+    allBtn.classList.remove("filter-button-active");
+}
