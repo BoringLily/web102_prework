@@ -1,7 +1,7 @@
 # WEB102 Prework - Lily  
 
-Submitted by: Lily Moon  
-Legal Name: Levko Nikitin 
+<!-- Submitted by: Lily Moon   -->
+Submitted by: Levko Nikitin 
 
 This project is a website for the company Sea Monster Crowdfunding that displays information about the games they have funded.
 
